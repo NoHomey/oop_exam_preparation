@@ -1,27 +1,26 @@
 CC = g++ -std=c++14 -Wall -Wextra -Wpedantic
 
+define Component
+$(1).o: $(2) ./../$(1)/$(1).h ./../$(1)/$(1).cc
+	$(CC) -c ./../$(1)/$(1).cc
+endef
+
 all: main
 
 main: Vector.o Set.o Ingredient.o Spice.o Vegetable.o Salad.o
 	$(CC) $^ main.cc
 
-Vector.o: ./../Vector/Vector.h ./../Vector/Vector.cc
-	$(CC) -c ./../Vector/Vector.cc
+$(eval $(call Component,Vector))
 
-Set.o: Vector.o ./../Set/Set.h ./../Set/Set.cc
-	$(CC) -c ./../Set/Set.cc
+$(eval $(call Component,Set,Vector.o))
 
-Ingredient.o: Set.o ./../Ingredient/Ingredient.h ./../Ingredient/Ingredient.cc
-	$(CC) -c ./../Ingredient/Ingredient.cc
+$(eval $(call Component,Ingredient,Set.o))
 
-Spice.o: Ingredient.o ./../Spice/Spice.h ./../Spice/Spice.cc
-	$(CC) -c ./../Spice/Spice.cc
-	
-Vegetable.o: Ingredient.o ./../Vegetable/Vegetable.h ./../Vegetable/Vegetable.cc
-	$(CC) -c ./../Vegetable/Vegetable.cc
+$(eval $(call Component,Spice,Ingredient.o))
 
-Salad.o: Ingredient.o Set.o Spice.o Vegetable.o ./../Salad/Salad.h ./../Salad/Salad.cc
-	$(CC) -c ./../Salad/Salad.cc
+$(eval $(call Component,Vegetable,Ingredient.o))
+
+$(eval $(call Component,Salad,Ingredient.o Set.o Spice.o Vegetable.o))
 
 clean:
 	rm -f *.o

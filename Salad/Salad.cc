@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& out, const Salad& salad) {
     const Ingredient* ingredient = nullptr;
     const size_t ingredientsSize = ingredients.size();
     out << "salad: " << salad.getName() << std::endl
-        <<"ingredients:" << std::endl;
+        << "ingredients:" << std::endl;
     for(size_t index = 0; index < ingredientsSize; ++index) {
         ingredient = ingredients[index];
         out << "  ";
