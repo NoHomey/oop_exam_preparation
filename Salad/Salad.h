@@ -11,7 +11,13 @@ public:
 
     const char* getName() const noexcept;
 
-    void addIngredient(const Ingredient* ingredient);
+    void addIngredient(const Ingredient& ingredient);
+
+    Salad& operator+(const Ingredient& ingredient);
+
+    const Ingredient& operator[](size_t index) const;
+
+    const Ingredient& operator[](const char* name) const;
  
 private:
     Set<const Ingredient*> ingredients;

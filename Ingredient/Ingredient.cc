@@ -5,19 +5,20 @@ Ingredient::Ingredient(const char* name, bool ownProduction, bool isVegetable) n
 isIngredientOwnProduction{ownProduction},
 isIngredientVegetable{isVegetable} { }
 
-void Ingredient::badIngredientsCombination(Ingredient* ingredientA, Ingredient* ingredientB) {
-    ingredientA->doseNotCombinesWith(ingredientB);
-    ingredientB->doseNotCombinesWith(ingredientA);
+void Ingredient::badIngredientsCombination(Ingredient& ingredientA, Ingredient& ingredientB) {
+    ingredientA.doseNotCombinesWith(ingredientB);
+    ingredientB.doseNotCombinesWith(ingredientA);
 }
 
-void Ingredient::doseNotCombinesWith(const Ingredient* ingredient) {
-    notCombinesWith.push(ingredient);
+void Ingredient::doseNotCombinesWith(const Ingredient& ingredient) {
+    notCombinesWith.push(&ingredient);
 }
 
-bool Ingredient::doseItCombinesWith(const Ingredient* ingredient) const noexcept {
+bool Ingredient::doseItCombinesWith(const Ingredient& ingredient) const noexcept {
     const size_t notCombinesWithSize = notCombinesWith.size();
+    const Ingredient* ingredientPtr = &ingredient;
     for(size_t i = 0; i < notCombinesWithSize; ++i) {
-        if(notCombinesWith[i] == ingredient) {
+        if(notCombinesWith[i] == ingredientPtr) {
             return true;
         }
     }

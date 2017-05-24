@@ -8,7 +8,7 @@ unsigned int Vegetable::getVitaminsInMiligramsPerKilogram() const noexcept {
 }
 
 std::ostream& operator<<(std::ostream& out, const Vegetable& vegetable) {
-    out << ((Ingredient)vegetable) << ", vitamins: "
+    out << "vegetable: " << ((Ingredient)vegetable) << ", vitamins: "
     << vegetable.getVitaminsInMiligramsPerKilogram() << "mg/Kg";
     return out;
 }

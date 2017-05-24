@@ -11,21 +11,20 @@ int main() {
     Salad basicSalad = {"basic salad"};
     Salad patatoSalad = {"patato salad"};
 
-    Ingredient::badIngredientsCombination(&cucumber, &patato);
+    Ingredient::badIngredientsCombination(cucumber, patato);
 
-    basicSalad.addIngredient(&tomato);
-    basicSalad.addIngredient(&cucumber);
-    basicSalad.addIngredient(&salt);
-    basicSalad.addIngredient(&peper);
-    basicSalad.addIngredient(&patato);
+    basicSalad + tomato + cucumber + salt + peper + patato;
+    patatoSalad + salt + peper + patato + cucumber;
 
-    patatoSalad.addIngredient(&salt);
-    patatoSalad.addIngredient(&peper);
-    patatoSalad.addIngredient(&patato);
-    patatoSalad.addIngredient(&cucumber);
+    Salad copySalad = basicSalad;
 
     std::cout << basicSalad << std::endl;
-    std::cout << patatoSalad;
+    std::cout << copySalad << std::endl;
+    std::cout << patatoSalad << std::endl;
+    std::cout << reinterpret_cast<const Vegetable&>(patatoSalad[2]) << std::endl;
+    std::cout << reinterpret_cast<const Vegetable&>(patatoSalad["patato"]) << std::endl;
+    std::cout << reinterpret_cast<const Spice&>(copySalad[3]) << std::endl;
+    std::cout << reinterpret_cast<const Spice&>(copySalad["peper"]) << std::endl;
 
     return 0;
 }

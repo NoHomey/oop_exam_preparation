@@ -8,7 +8,7 @@ Spice::SpiceType Spice::getType() const noexcept {
 }
 
 std::ostream& operator<<(std::ostream& out, const Spice& spice) {
-    out << ((Ingredient)spice) << ", type: ";
+    out << "spice: " << ((Ingredient)spice) << ", type: ";
     switch(spice.getType()) {
         case Spice::SpiceType::Liquid:
             out << "liquid";
