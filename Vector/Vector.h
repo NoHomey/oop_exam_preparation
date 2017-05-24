@@ -5,6 +5,8 @@
 template<typename Type>
 class Vector {
 public:
+    Vector();
+
     explicit Vector(size_t size);
 
     ~Vector() noexcept;
@@ -25,6 +27,11 @@ public:
 
     void pop();
 
+protected:
+    Type* array;
+    size_t arraySize;
+    size_t arrayCapacity;
+
 private:
     void copy(const Vector& other) noexcept;
 
@@ -33,8 +40,4 @@ private:
     size_t expandedCapacity() const noexcept;
 
     void reallocate();
-
-    Type* array;
-    size_t arraySize;
-    size_t arrayCapacity;
 };

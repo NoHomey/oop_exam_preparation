@@ -4,6 +4,10 @@
 #include <stdexcept>
 
 template<typename Type>
+Vector<Type>::Vector()
+: array{nullptr}, arraySize{0}, arrayCapacity{0} { }
+
+template<typename Type>
 Vector<Type>::Vector(size_t size)
 : array{new Type[size]}, arraySize{0}, arrayCapacity{size} { }
 
@@ -105,4 +109,5 @@ void Vector<Type>::reallocate() {
     reallocate(expandedCapacity());
 }
 
-template class Vector<int>;
+class Ingredient;
+template class Vector<const Ingredient*>;
