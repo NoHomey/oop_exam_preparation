@@ -96,6 +96,7 @@ void DynamicArray<Element>::destroy() noexcept {
 
 template<typename Element>
 void DynamicArray<Element>::moveOther(DynamicArray&& other) noexcept {
+    delete[] array;
     array = other.array;
     arraySize = other.arraySize;
     arrayCapacity = other.arrayCapacity;
